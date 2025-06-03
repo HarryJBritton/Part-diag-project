@@ -1,24 +1,29 @@
 #include<Feyn/vertex.h>
 #include<Feyn/connection.h>
 #include<Feyn/diagram.h>
+#include<Image/image.h>
 #include<iostream>
 
 int main()
 {
   std::cout<<"\nHello world!\n";
 
-  Diagram d = Diagram();
+  const int width = 640;
+  const int height = 480;
 
-  d.add_vertex(0,0);
-  d.add_vertex(1,2);
-  d.add_connection(1,2,1);
+  Image image(width,height);
 
+  for (int y = 0; y < height; y++)
+  {
+    for (int x = 0; x < width; x++)
+    {
+      image.set_Colour(Colour((float)x / (float)width, (float)y / (float)height, 0.f ), x, y);
+    }
+    
+  }
 
-  std::cout<<d.numVertices()<<" vertices with ";
-  std::cout<<d.numConnections()<<" connections"<<std::endl;
-
-  d.listVertices();
-  d.listConnections();
+  image.Export("image.bmp");
+  
 
 
   return 0;
