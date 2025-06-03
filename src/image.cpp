@@ -24,6 +24,14 @@ void Image::set_Colour(const Colour &colour, int x, int y)
 
 }
 
+int Image::get_height()
+{
+  return m_height;
+}
+int Image::get_width()
+{
+  return m_width;
+}
 void Image::Export(const char *path) const
 {
   std::ofstream f;

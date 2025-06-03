@@ -21,6 +21,9 @@ public:
   Colour get_Colour(int x, int y) const;
   void set_Colour(const Colour& colour, int x, int y);
 
+  int get_height();
+  int get_width();
+
   void Export(const char* path) const;
 
 private:

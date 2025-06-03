@@ -17,10 +17,21 @@ int main()
   {
     for (int x = 0; x < width; x++)
     {
-      image.set_Colour(Colour((float)x / (float)width, (float)y / (float)height, 0.f ), x, y);
+      image.set_Colour(Colour(1.f,1.f,1.f), x, y);
     }
     
   }
+
+  Diagram d;
+
+  d.add_vertex(20,20);
+  d.add_vertex(500,50);
+  d.add_vertex(250, 400);
+
+  DrawSettings settings;
+
+  d.drawAllVertices(image, settings);
+
 
   image.Export("image.bmp");
   
