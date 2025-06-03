@@ -1,6 +1,8 @@
 #include<Feyn/diagram.h>
 #include<iostream>
 #include<algorithm>
+#include<fstream>
+
 
 Diagram::Diagram(){
   connections = std::vector<Connection>();
@@ -67,55 +69,48 @@ void Diagram::listConnections()
     std::cout<<"Type "<<it->get_type()<<" from "<<it->get_startID()<<" to "<<it->get_endID()<<std::endl;
   }
 }
-void Diagram::drawVertex(int ID, Image& image, DrawSettings & settings)
+void Diagram::drawVertex(int ID, std::ofstream& file, DrawSettings & settings)
 {
   Vertex v = get_vertex(ID);
   int x_pos = v.get_pos()[0];
   int y_pos = v.get_pos()[1];
 
-  for (int y = 0; y < image.get_height(); y++)
-  {
-    for (int x = 0; x < image.get_width(); x++)
-    {
-      if((float)(x - x_pos) * (float)(x - x_pos) + (float)(y - y_pos) * (float)(y - y_pos) < settings.VertexRadius)
-      {
-        Colour current_colour = image.get_Colour(x,y);
-        Colour new_colour = Colour(std::min(current_colour.r, settings.vertexColour.r),
-          std::min(current_colour.g, settings.vertexColour.g),
-          std::min(current_colour.b, settings.vertexColour.b));
+  file << "  <circle cx=\""<<x_pos<<"\" cy=\""<<y_pos<<"\" r=\""<<settings.VertexRadius<<"\" fill=\"black\" />\n";
 
-        image.set_Colour(new_colour, x, y);
-        
-      }
-    }
-  }
+
+  
 }
 
-void Diagram::drawAllVertices(Image & image, DrawSettings & settings)
+void Diagram::drawAllVertices(std::ofstream & file, DrawSettings & settings)
 {
   for (auto it = vertices.begin(); it < vertices.end(); it++)
   {
-    drawVertex(it->get_ID(), image, settings);
+    drawVertex(it->get_ID(), file, settings);
   }
   
 }
 
-void Diagram::drawConnection(Connection connection, Image & image, DrawSettings & settings)
+void Diagram::drawConnection(Connection connection, std::ofstream & file, DrawSettings & settings)
 {
   Vertex v1 = get_vertex(connection.get_startID());
   Vertex v2 = get_vertex(connection.get_endID());
 
+  int x1 = v1.get_pos()[0];
+  int y1 = v1.get_pos()[1];
+
+  int x2 = v2.get_pos()[0];
+  int y2 = v2.get_pos()[1];
+
+  file << "<line x1=\""<<x1<<"\" y1=\""<<y1<<"\" x2=\""<<x2<<"\" y2=\""<<y2<<"\" style=\"stroke:red;stroke-width:"<<settings.connectionWidth<<"\" />";
   
-
-
 }
 
-void Diagram::drawAllConnections(Image & image, DrawSettings & settings)
+void Diagram::drawAllConnections(std::ofstream & file, DrawSettings & settings)
 {
   // iterate over connections
   for(auto it = connections.begin(); it < connections.end(); it++)
   {
-    drawConnection(*it, image, settings);
+    drawConnection(*it, file, settings);
   }
 
 
@@ -123,12 +118,12 @@ void Diagram::drawAllConnections(Image & image, DrawSettings & settings)
 
 
 DrawSettings::DrawSettings()
-  : VertexRadius(10), vertexColour(Colour(1.f, 0.0f, 0.0f))
+  : VertexRadius(10), vertexColour(Colour(1.f, 0.0f, 0.0f)), connectionWidth(5)
 {
 }
 
-DrawSettings::DrawSettings(float radius, Colour colour)
-  : VertexRadius(radius), vertexColour(colour)
+DrawSettings::DrawSettings(float radius, Colour colour, float width)
+  : VertexRadius(radius), vertexColour(colour), connectionWidth(width)
 {
 }
 

@@ -5,14 +5,17 @@
 #include<Feyn/vertex.h>
 #include<Feyn/connection.h>
 #include<Image/image.h>
+#include<fstream>
 
 struct DrawSettings
 {
   float VertexRadius;
   Colour vertexColour;
+  float connectionWidth;
+
 
   DrawSettings();
-  DrawSettings(float, Colour);
+  DrawSettings(float, Colour, float);
   ~DrawSettings();
 
 };
@@ -36,11 +39,11 @@ class Diagram{
   void listConnections();
 
   // drawing functionality
-  void drawVertex(int, Image&, DrawSettings&);
-  void drawAllVertices(Image&, DrawSettings&);
+  void drawVertex(int, std::ofstream&, DrawSettings&);
+  void drawAllVertices(std::ofstream&, DrawSettings&);
 
-  void drawConnection(Connection, Image&, DrawSettings&);
-  void drawAllConnections(Image&, DrawSettings&);
+  void drawConnection(Connection, std::ofstream&, DrawSettings&);
+  void drawAllConnections(std::ofstream&, DrawSettings&);
 
 
 
