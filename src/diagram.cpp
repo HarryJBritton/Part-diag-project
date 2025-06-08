@@ -118,12 +118,12 @@ void Diagram::drawAllConnections(std::ofstream & file, DrawSettings & settings)
 
 
 DrawSettings::DrawSettings()
-  : VertexRadius(10), vertexColour(Colour(1.f, 0.0f, 0.0f)), connectionWidth(5)
+  : VertexRadius(10), connectionWidth(5)
 {
 }
 
-DrawSettings::DrawSettings(float radius, Colour colour, float width)
-  : VertexRadius(radius), vertexColour(colour), connectionWidth(width)
+DrawSettings::DrawSettings(float radius, float width)
+  : VertexRadius(radius), connectionWidth(width)
 {
 }
 

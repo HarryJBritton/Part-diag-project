@@ -4,18 +4,16 @@
 #include<vector>
 #include<Feyn/vertex.h>
 #include<Feyn/connection.h>
-#include<Image/image.h>
 #include<fstream>
 
 struct DrawSettings
 {
   float VertexRadius;
-  Colour vertexColour;
   float connectionWidth;
 
 
   DrawSettings();
-  DrawSettings(float, Colour, float);
+  DrawSettings(float, float);
   ~DrawSettings();
 
 };

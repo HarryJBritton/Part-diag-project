@@ -1,7 +1,6 @@
 #include<Feyn/vertex.h>
 #include<Feyn/connection.h>
 #include<Feyn/diagram.h>
-#include<Image/image.h>
 #include<iostream>
 #include<fstream>
 
