@@ -3,16 +3,15 @@
 
 Vertex::Vertex(){
   
-  numInstances += 1;
   ID = numInstances;
+  numInstances += 1;
   pos = {0, 0};
 }
 
-Vertex::Vertex(int positionX, int positionY){
+Vertex::Vertex(float positionX, float positionY){
 
-  numInstances += 1;
   ID = numInstances;
-
+  numInstances += 1;
   pos = {positionX, positionY};
 }
 
@@ -24,17 +23,17 @@ int Vertex::get_ID()
 
 
 
-std::vector<int> Vertex::get_pos()
+std::vector<float> Vertex::get_pos()
 {
   return pos;
 }
 
-void Vertex::set_pos(std::vector<int> position)
+void Vertex::set_pos(std::vector<float> position)
 {
   pos = position;
 }
 
-void Vertex::set_pos(int positionX, int positionY)
+void Vertex::set_pos(float positionX, float positionY)
 {
   pos = {positionX, positionY};
 }

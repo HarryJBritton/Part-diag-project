@@ -7,13 +7,13 @@ class Vertex
 {
 public:
   Vertex();
-  Vertex(int, int);
+  Vertex(float, float);
 
   int get_ID();
 
-  std::vector<int> get_pos();
-  void set_pos(std::vector<int>);
-  void set_pos(int, int);
+  std::vector<float> get_pos();
+  void set_pos(std::vector<float>);
+  void set_pos(float, float);
 
 
 
@@ -21,7 +21,7 @@ private:
 
   inline static int numInstances = 0;
   int ID;
-  std::vector<int> pos;
+  std::vector<float> pos;
 
 };
 

@@ -10,10 +10,12 @@ struct DrawSettings
 {
   float VertexRadius;
   float connectionWidth;
+  float diagramWidth;
+  float diagramHeight;
 
 
   DrawSettings();
-  DrawSettings(float, float);
+  DrawSettings(float, float, float, float);
   ~DrawSettings();
 
 };
@@ -24,7 +26,7 @@ class Diagram{
   Diagram();
 
   void add_vertex(Vertex);
-  void add_vertex(int,int);
+  void add_vertex(float, float);
   void add_connection(Connection);
   void add_connection(int, int, int);
 
@@ -37,12 +39,15 @@ class Diagram{
   void listConnections();
 
   // drawing functionality
-  void drawVertex(int, std::ofstream&, DrawSettings&);
+  void drawVertex(int, std::ofstream&, float, float, float);
   void drawAllVertices(std::ofstream&, DrawSettings&);
 
-  void drawConnection(Connection, std::ofstream&, DrawSettings&);
+  void drawConnection(Connection, std::ofstream&, float, float, float);
   void drawAllConnections(std::ofstream&, DrawSettings&);
 
+  // sorting functionality
+
+  void sortVert();
 
 
   private:

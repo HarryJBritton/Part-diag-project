@@ -8,10 +8,10 @@ Connection::Connection(){
 
 Connection::Connection(int start, int end, int connectionType)
 {
-  if(start < 1){
+  if(start < 0){
     std::cout<<"ERR: start vertex ID is invalid\n";
     startID = 0; 
-  }else if (end < 1)
+  }else if (end < 0)
   {
     std::cout<<"ERR: end vertex ID is invalid\n";
     endID = 0; 
@@ -45,7 +45,7 @@ int Connection::get_startID()
 }
 void Connection::set_startID(int start)
 {
-    if(start < 1){
+    if(start < 0){
     std::cout<<"ERR: start vertex ID is invalid\n";
     startID = 0; 
   }else if (start == endID)
@@ -65,7 +65,7 @@ int Connection::get_endID(){
 }
 
 void Connection::set_endID(int end){
-  if(end < 1){
+  if(end < 0){
     std::cout<<"ERR: end vertex ID is invalid\n";
     endID = 0; 
   }else if (startID == end)
